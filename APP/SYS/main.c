@@ -8,7 +8,7 @@
 
 #define CLI()      __set_PRIMASK(1)  
 #define SEI()      __set_PRIMASK(0)
-////////////////////////////////////////////////////////////////////////////////
+
 void SYS_INIT(void)
 {
 	LED_INIT();			//LED及串口IO 初始化
@@ -28,7 +28,7 @@ void SYS_INIT(void)
 	InitMPU6050();
 	
 	ADC1_Init();		//检测电池电压
-	FLASH_Unlock();	//保存飞飞控参数
+	FLASH_Unlock();		//保存飞飞控参数
 	EE_INIT();
 	EE_READ_ACC_OFFSET();
 	EE_READ_GYRO_OFFSET();
@@ -39,12 +39,13 @@ void SYS_INIT(void)
 	PID_YAW.P = 0.5;	
 	PID_YAW.D = 0.05;			
 }
-////////////////////////////////////////////////////////////////////////////////
+
 int main(void)
 {
 	SYS_INIT_OK=0;	//初始化标志
 	SYS_INIT();
 	SYS_INIT_OK=1;
+
 	while (1){}
 }
 
